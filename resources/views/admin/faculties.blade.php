@@ -6,38 +6,22 @@
     <div class="container-fluid px-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 border-bottom pb-3">
             <div>
-                <h1 class="mt-4">Manajemen Category</h1>
-                <p class="text-muted">Kelola semua category dalam sistem"</p>
+                <h1 class="h2 fw-bold text-primary">Manajemen Fakultas</h1>
+                {{--                <p class="text-muted">Kelola semua department dalam sistem</p>--}}
             </div>
-            <div class="d-flex flex-wrap gap-3">
-                {{-- form search --}}
-                <form action="{{ route('admin.faculties') }}" method="GET" class="d-flex">
-                    <div class="input-group input-group-sm">
-                        <input type="text" name="search" placeholder="Cari dokumen..." value=""
-                            class="form-control border-0 bg-light">
-                        <button type="submit" class="btn btn-outline-primary">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form>
-                {{-- add button --}}
-                <button type="button" class="btn btn-primary btn-sm d-flex align-items-center gap-1" data-bs-toggle="modal"
-                    data-bs-target="#addModal">
-                    <i><i class="bi bi-plus-circle"></i></i> Tambah Fakultas
-                </button>
+            <div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah
+                    Fakultas <i class="bi bi-plus-circle"></i></button>
             </div>
+        </div>
         </div>
         {{-- session --}}
 
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="bi bi-table me-1"></i>
-                        Daftar Fakultas
-                    </div>
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -54,10 +38,10 @@
                                         <td class="align-middle">{{ $data->code }}</td>
                                         <td class="align-middle ps-4">{{ $data->name }}</td>
                                         {{-- icon from storage --}}
-                                        <td class="align-middle">
-                                                <img src="{{ asset('storage/faculties/' . $data->icon) }}" alt="icon" class="figure-img">
+{{--                                        <td class="align-middle">--}}
+{{--                                                <img src="{{ asset('storage/faculties/' . $data->icon) }}" alt="icon" class="figure-img">--}}
 
-                                        </td>
+{{--                                        </td>--}}
                                         <td class="align-middle text-end pe-4">
                                             {{-- modal edit button --}}
                                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"

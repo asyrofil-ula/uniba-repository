@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Manajemen Dokumen')
+@section('header', 'Manajemen Dokumen')
 @section('content')
 
     <div class="container-fluid">
@@ -90,12 +91,6 @@
                                     <td>
                                         <div class="btn-group btn-group-sm">
                                             <a class="btn btn-info" href="{{route('admin.documents.show', $document->id)}}"><i class="bi bi-eye"></i></a>
-                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#editModal{{ $document->id }}"><i
-                                                    class="bi bi-pencil-square"></i></button>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal{{ $document->id }}"><i
-                                                    class="bi bi-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -104,9 +99,9 @@
                     </table>
                 </div>
 
-                <!-- Pagination -->
+                <!-- Pagination bootstrap -->
                 <div class="flex justify-center mt-4">
-                    {{ $documents->links() }}
+                    {{ $documents->links('vendor.pagination.bootstrap-5') }}
                 </div>
             </div>
         </div>

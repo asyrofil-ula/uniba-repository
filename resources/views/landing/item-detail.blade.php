@@ -174,10 +174,7 @@
                                 <span class="text-gray-600">Tanggal Unggah</span>
                                 <span class="font-medium">{{ $document->created_at->format('d F Y') }}</span>
                             </div>
-                            <div class="flex justify-between border-b pb-2">
-                                <span class="text-gray-600">Tanggal Publikasi</span>
-                                <span class="font-medium">{{ $document->published_at?->format('d F Y') ?? '-' }}</span>
-                            </div>
+
                             <div class="flex justify-between border-b pb-2">
                                 <span class="text-gray-600">Bahasa</span>
                                 <span class="font-medium">

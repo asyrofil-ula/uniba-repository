@@ -34,7 +34,7 @@ class Document extends Model
         return $this->belongsTo(User::class);
     }
 
-   
+
 
     public function faculty()
     {
@@ -55,12 +55,13 @@ class Document extends Model
         return $this->belongsTo(License::class);
     }
 
-     public function authors()
+    public function authors()
     {
         return $this->belongsToMany(User::class, 'authors')
-                    ->withPivot('author_order', 'is_corresponding')
-                    ->orderBy('author_order');
+            ->withPivot('author_order', 'is_corresponding')
+            ->orderBy('pivot_author_order');
     }
+
     public function keywords()
 {
     return $this->hasMany(Keyword::class);
@@ -100,5 +101,5 @@ class Document extends Model
     }
 
 
-    
+
 }

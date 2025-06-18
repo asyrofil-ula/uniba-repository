@@ -38,6 +38,8 @@
                             </button>
                             <div
                                 class="absolute top-full left-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-emerald-100">
+                                <a href="{{route('all.documents')}}"
+                                    class="block px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-t-xl">Semua Dokumen</a>
                                 <a href="{{route('explore.faculties')}}"
                                     class="block px-4 py-3 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-t-xl">Komunitas/Fakultas</a>
                                 <a href="{{route('explore.years')}}"

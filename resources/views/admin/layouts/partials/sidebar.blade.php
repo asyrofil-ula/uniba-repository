@@ -42,9 +42,8 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
-                <li
-                    class="sidebar-item active ">
-                    <a href="{{route('admin.home')}}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('admin.home') ? 'active' : '' }}">
+                    <a href="{{ route('admin.home') }}" class="sidebar-link">
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
@@ -52,100 +51,48 @@
 
                 <li class="sidebar-title">Data Master</li>
 
-                <li
-                    class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
+                <li class="sidebar-item has-sub {{ request()->routeIs('admin.faculties', 'admin.departments') ? 'active' : '' }}">
+                    <a href="#" class="sidebar-link">
                         <i class="bi bi-hexagon-fill"></i>
                         <span>Fakultas & Department</span>
                     </a>
-
-                    <ul class="submenu ">
-
-                        <li class="submenu-item  ">
-                            <a href="{{route('admin.faculties')}}" class="submenu-link">Fakultas</a>
-
+                    <ul class="submenu">
+                        <li class="submenu-item {{ request()->routeIs('admin.faculties') ? 'active' : '' }}">
+                            <a href="{{ route('admin.faculties') }}" class="submenu-link">Fakultas</a>
                         </li>
-                        <li class="submenu-item  ">
-                            <a href="{{route('admin.departments')}}" class="submenu-link">Department</a>
+                        <li class="submenu-item {{ request()->routeIs('admin.departments') ? 'active' : '' }}">
+                            <a href="{{ route('admin.departments') }}" class="submenu-link">Department</a>
                         </li>
-
                     </ul>
-
-
                 </li>
 
                 <li class="sidebar-title">Repositori</li>
 
-                <li
-                    class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-pentagon-fill"></i>
+                <li class="sidebar-item has-sub {{ request()->routeIs('admin.documents', 'admin.documenttypes') ? 'active' : '' }}">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-file-earmark-text-fill"></i>
                         <span>Dokumen</span>
                     </a>
-
-                    <ul class="submenu ">
-
-                        <li class="submenu-item  ">
-                            <a href="{{route('admin.documenttypes')}}" class="submenu-link">Jenis Dokumen</a>
-
+                    <ul class="submenu">
+                        <li class="submenu-item {{ request()->routeIs('admin.documenttypes') ? 'active' : '' }}">
+                            <a href="{{ route('admin.documenttypes') }}" class="submenu-link">Jenis Dokumen</a>
                         </li>
-
-                        <li class="submenu-item  ">
-                            <a href="{{route('admin.documents')}}" class="submenu-link">Dokumen</a>
-
+                        <li class="submenu-item {{ request()->routeIs('admin.documents') ? 'active' : '' }}">
+                            <a href="{{ route('admin.documents') }}" class="submenu-link">Dokumen</a>
                         </li>
-
-
-
                     </ul>
-
-
                 </li>
+
                 <li class="sidebar-title">User Management</li>
 
-                <li
-                    class="sidebar-item  ">
-                    <a href="{{route('admin.users')}}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('admin.users') ? 'active' : '' }}">
+                    <a href="{{ route('admin.users') }}" class="sidebar-link">
                         <i class="bi bi-people-fill"></i>
                         <span>User</span>
                     </a>
-
-
                 </li>
-
-                <li class="sidebar-title">Raise Support</li>
-
-                <li
-                    class="sidebar-item  ">
-                    <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>
-                        <i class="bi bi-life-preserver"></i>
-                        <span>Documentation</span>
-                    </a>
-
-
-                </li>
-
-                <li
-                    class="sidebar-item  ">
-                    <a href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md" class='sidebar-link'>
-                        <i class="bi bi-puzzle"></i>
-                        <span>Contribute</span>
-                    </a>
-
-
-                </li>
-
-                <li
-                    class="sidebar-item  ">
-                    <a href="https://github.com/zuramai/mazer#donation" class='sidebar-link'>
-                        <i class="bi bi-cash"></i>
-                        <span>Donate</span>
-                    </a>
-
-
-                </li>
-
             </ul>
         </div>
+
     </div>
 </div>

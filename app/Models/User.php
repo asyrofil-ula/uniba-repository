@@ -93,11 +93,11 @@ class User extends Authenticatable
         return $this->hasMany(Download::class);
     }
 
-    public function authors()
-    {
-        return $this->belongsToMany(User::class, 'authors')
-                    ->withPivot('author_order', 'is_corresponding')
-                    ->orderBy('author_order');
-    }
+//    public function authors()
+//    {
+//        return $this->belongsToMany(User::class, 'authors')
+//                    ->withPivot('author_order', 'is_corresponding')
+//                    ->orderBy('author_order');
+//    }
 
 }

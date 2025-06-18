@@ -16,7 +16,7 @@
             <!-- partial:partials/_sidebar.html -->
             <!-- partial -->
             <div class="page-heading">
-                <h3>Profile Statistics</h3>
+                <h3>@yield('header')</h3>
             </div>
             <div class="page-content">
                 @yield('content')

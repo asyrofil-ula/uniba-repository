@@ -14,9 +14,22 @@ class LandingController extends Controller
     public function index()
     {
         $documents = \App\Models\Document::all();
-        $types = \App\Models\DocumentType::all();
+        $types = DocumentType::withCount('documents')->get();
 
-        return view('landing.index', compact('documents', 'types'));
+        $totalDocuments = Document::all()->where('status', 'published')->count();
+        $totalFaculties = Faculty::all()->count();
+        $totalDownloads = Document::sum('download_count');
+        $totalViews = Document::sum('view_count');
+//        total author relasi ke user dan yang mempunyai document
+        $totalAuthors = Author::with('user')->distinct()->count('user_id');
+
+        $faculties = Faculty::withCount('documents')->get();
+        $newDocuments = Document::with(['authors', 'documentType', 'faculty'])->where('status', 'published')
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('landing.index', compact('documents','newDocuments', 'faculties','types', 'totalDocuments', 'totalFaculties', 'totalDownloads', 'totalViews', 'totalAuthors'));
     }
 
     public function allDocuments(Request $request)
@@ -85,6 +98,7 @@ class LandingController extends Controller
         $documents = $faculty->documents()
             ->where('status', 'published')
             ->with('authors')->latest()->get();
+
 //        dd($documents);
         return view('landing.detail.fakultas', compact('faculty', 'documents'));
     }
@@ -162,9 +176,10 @@ class LandingController extends Controller
         }
 
         // Filter penulis
-        if ($request->author) {
-            $query->whereHas('authors', function($q) use ($request) {
-                $q->where('name', 'like', "%{$request->author}%");
+        if ($request->filled('author')) {
+            $author = $request->input('author');
+            $query->whereHas('authors', function ($q) use ($author) {
+                $q->where('name', 'like', "%{$author}%");
             });
         }
 

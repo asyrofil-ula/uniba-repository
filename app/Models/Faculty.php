@@ -14,7 +14,7 @@ class Faculty extends Model
     protected $fillable = [
         'name',
         'code',
-        
+
         'icon',
     ];
 
@@ -26,6 +26,10 @@ class Faculty extends Model
     public function documents()
     {
         return $this->hasMany(Document::class);
+    }
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 
 }

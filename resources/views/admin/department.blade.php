@@ -7,7 +7,7 @@
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 border-bottom pb-3">
             <div>
                 <h1 class="h2 fw-bold text-primary">Manajemen Department</h1>
-                <p class="text-muted">Kelola semua department dalam sistem</p>
+{{--                <p class="text-muted">Kelola semua department dalam sistem</p>--}}
             </div>
             <div>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Tambah
@@ -51,10 +51,10 @@
                                 <td>{{ $department->name }}</td>
                                 <td>{{ $department->faculty->name }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
                                         data-bs-target="#editModal{{ $department->id }}"><i
                                             class="bi bi-pencil-square"></i></button>
-                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $department->id }}"><i
                                             class="bi bi-trash"></i></button>
                                 </td>

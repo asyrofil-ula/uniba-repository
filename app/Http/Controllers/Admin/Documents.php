@@ -17,7 +17,7 @@ class Documents extends Controller
      */
     public function index()
     {
-        $documents = ModelsDocuments::paginate(3);
+        $documents = ModelsDocuments::paginate(5);
         $totalDocuments = ModelsDocuments::count();
         $faculties = Faculty::all();
         return view('admin.documents.documents', compact('documents',  'faculties', 'totalDocuments'));

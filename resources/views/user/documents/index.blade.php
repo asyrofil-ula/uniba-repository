@@ -3,7 +3,7 @@
 @section('title', 'Dokumen Saya')
 
 @section('content')
-    <div class="container mx-auto mt-8 sm:mt-12 px-4 py-8 md:max-w-4xl">
+    <div class="min-h-screen container mx-auto mt-8 sm:mt-12 px-4 py-8 ">
         <div class="bg-white w-full shadow rounded-lg">
             <div class="flex justify-between items-center p-4 border-b">
                 <h5 class="text-lg font-semibold">Dokumen Saya</h5>
