@@ -82,13 +82,17 @@ class LandingController extends Controller
     public function fakultas_detail(string $id)
     {
         $faculty = Faculty::findOrFail($id);
-        $documents = $faculty->documents()->with('authors')->latest()->get();
+        $documents = $faculty->documents()
+            ->where('status', 'published')
+            ->with('authors')->latest()->get();
 //        dd($documents);
         return view('landing.detail.fakultas', compact('faculty', 'documents'));
     }
     public function tahun_detail(string $year)
     {
-        $documents = Document::with('authors')->where('publication_year', $year)->latest()->get();
+        $documents = Document::with('authors')
+            ->where('status', 'published')
+            ->where('publication_year', $year)->latest()->get();
         return view('landing.detail.tahun', compact('year', 'documents'));
     }
 
@@ -115,9 +119,18 @@ class LandingController extends Controller
     public function jenis_dokumen_detail(string $id)
     {
         $type = DocumentType::findOrFail($id);
-        $documents = $type->documents()->with('authors')->latest()->get();
+
+        $documents = $type->documents()
+            ->where('status', 'published')
+            ->with([
+                'authors' => fn ($query) => $query->orderBy('author_order')
+            ])
+            ->latest()
+            ->get();
+
         return view('landing.detail.jenis-dokumen', compact('type', 'documents'));
     }
+
 
 
     public function search(Request $request)

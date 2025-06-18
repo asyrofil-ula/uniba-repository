@@ -66,19 +66,19 @@
                                     {{ $document->department->name }}
                                 </a>
                             </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Pembimbing</p>
-                                <p class="font-medium">
-                                    @if (isset($document->supervisors) && $document->supervisors->isNotEmpty())
-                                        {{ $document->supervisors->first()->name }}
-                                        @if ($document->supervisors->count() > 1)
-                                            +{{ $document->supervisors->count() - 1 }} lainnya
-                                        @endif
-                                    @else
-                                        -
-                                    @endif
-                                </p>
-                            </div>
+{{--                            <div>--}}
+{{--                                <p class="text-sm text-gray-500">Pembimbing</p>--}}
+{{--                                <p class="font-medium">--}}
+{{--                                    @if (isset($document->supervisors) && $document->supervisors->isNotEmpty())--}}
+{{--                                        {{ $document->supervisors->first()->name }}--}}
+{{--                                        @if ($document->supervisors->count() > 1)--}}
+{{--                                            +{{ $document->supervisors->count() - 1 }} lainnya--}}
+{{--                                        @endif--}}
+{{--                                    @else--}}
+{{--                                        ---}}
+{{--                                    @endif--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
                         </div>
 
                         <!-- Kata Kunci -->
