@@ -10,7 +10,7 @@ class Department extends Model
     use HasFactory;
     protected $table = 'departments';
     protected $fillable = ['name',  'faculty_id'];
-    
+
 
     public function faculty()
     {
@@ -21,5 +21,10 @@ class Department extends Model
     public function documents()
     {
         return $this->hasMany(Document::class);
+    }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
     }
 }

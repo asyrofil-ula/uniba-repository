@@ -38,13 +38,13 @@
                         <dt class="col-sm-4">Role</dt>
                         <dd class="col-sm-8">
                             @if($user->role == 'admin')
-                                <span class="badge badge-danger">Admin</span>
+                                <span class="badge bg-danger">Admin</span>
                             @elseif($user->role == 'librarian')
-                                <span class="badge badge-primary">Pustakawan</span>
-                            @elseif($user->role == 'lecturer')
-                                <span class="badge badge-info">Dosen</span>
+                                <span class="badge bg-primary">Pustakawan</span>
+                            @elseif($user->role == 'dosen')
+                                <span class="badge bg-info">Dosen</span>
                             @else
-                                <span class="badge badge-secondary">Mahasiswa</span>
+                                <span class="badge bg-secondary">Mahasiswa</span>
                             @endif
                         </dd>
 
@@ -66,10 +66,6 @@
 
                         <dt class="col-sm-4">Nomor Telepon</dt>
                         <dd class="col-sm-8">{{ $user->phone ?? '-' }}</dd>
-
-                        <dt class="col-sm-4">ORCID ID</dt>
-                        <dd class="col-sm-8">{{ $user->orcid_id ?? '-' }}</dd>
-
                         <dt class="col-sm-4">Terdaftar pada</dt>
                         <dd class="col-sm-8">{{ $user->created_at->format('d M Y H:i') }}</dd>
                     </dl>

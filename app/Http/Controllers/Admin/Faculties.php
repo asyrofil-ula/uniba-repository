@@ -34,18 +34,22 @@ class Faculties extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'code' => ['required', 'string', 'max:255'],
-            'icon' => ['required','file','mimes:jpg,jpeg,png'],
+            'code' => ['required', 'unique:faculties','string', 'max:255'],
+//            'icon' => ['required','file','mimes:jpg,jpeg,png'],
+        ],[
+            'name.required' => 'Nama Fakultas Harus Di Isi',
+            'code.required' => 'Kode Fakultas Harus Di Isi',
+            'code.unique' => 'Kode Fakultas Sudah Terdaftar',
         ]);
 
-        $file = $request->file('icon');
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('faculties', $fileName, 'public');
+//        $file = $request->file('icon');
+//        $fileName = time() . '.' . $file->getClientOriginalExtension();
+//        $file->storeAs('faculties', $fileName, 'public');
 
         ModelsFaculties::create([
             'name' => $request->name,
             'code' => $request->code,
-            'icon' => $fileName
+//            'icon' => $fileName
         ]);
 
 

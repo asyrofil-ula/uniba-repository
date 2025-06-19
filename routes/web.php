@@ -103,6 +103,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/admin/users/update/{id}',[UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/admin/users/{id}',[UserController::class, 'destroy'])->name('admin.users.destroy');
 
+    Route::post('/import', [UserController::class, 'import'])->name('admin.users.import');
+    Route::get('/export', [UserController::class, 'export'])->name('admin.users.export');
+    Route::get('/export-template', [UserController::class, 'exportTemplate'])->name('admin.users.export-template');
+
 });
 
     //dosen

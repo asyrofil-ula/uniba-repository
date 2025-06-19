@@ -27,7 +27,7 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Kode</th>
                                     <th scope="col" class="ps-4">Nama Fakultas</th>
-                                    <th scope="col">Icon</th>
+{{--                                    <th scope="col">Icon</th>--}}
                                     <th scope="col" class="text-end pe-4">Aksi</th>
                                 </tr>
                             </thead>
@@ -83,10 +83,10 @@
                                 <label for="name" class="form-label fw-medium">Nama Fakultas</label>
                                 <input type="text" class="form-control bg-light border-0" name="name" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="icon" class="form-label fw-medium">Icon</label>
-                                <input type="file" class="form-control bg-light border-0" name="icon" accept="image/*" required>
-                            </div>
+{{--                            <div class="mb-3">--}}
+{{--                                <label for="icon" class="form-label fw-medium">Icon</label>--}}
+{{--                                <input type="file" class="form-control bg-light border-0" name="icon" accept="image/*" required>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="modal-footer border-0">
                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
@@ -123,10 +123,10 @@
                                     <input type="text" class="form-control bg-light border-0" name="name"
                                         value="{{ $data->name }}" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="icon" class="form-label fw-medium">Icon</label>
-                                    <input type="file" class="form-control bg-light border-0" name="icon" accept="image/*">
-                                </div>
+{{--                                <div class="mb-3">--}}
+{{--                                    <label for="icon" class="form-label fw-medium">Icon</label>--}}
+{{--                                    <input type="file" class="form-control bg-light border-0" name="icon" accept="image/*">--}}
+{{--                                </div>--}}
                             </div>
                             <div class="modal-footer border-0">
                                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>

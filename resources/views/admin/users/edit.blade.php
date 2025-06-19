@@ -22,7 +22,6 @@
                     <div class="row g-4">
                         <div class="">
                             <div class="form-group mb-4">
-{{--                                <label for="photo" class="form-label fw-semibold">Foto Profil</label>--}}
                                 <div class="d-flex justify-content-center align-items-center">
                                     <div class="me-3">
                                         <img id="photoPreview" src="{{ asset('admin/assets/static/images/faces/user.png') }}" alt="Profile Preview" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
@@ -86,7 +85,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-4" id="lecturerIdField" style="{{ old('role', $user->role) == 'dosen' ? '' : 'display: none' }}">
-                                <label for="lecturer_id" class="form-label fw-semibold">NIDN</label>
+                                <label for="lecturer_id" class="form-label fw-semibold">NIP</label>
                                 <input type="text" class="form-control rounded-3" id="lecturer_id" name="lecturer_id" value="{{ old('lecturer_id', $user->lecturer_id) }}">
                                 @error('lecturer_id')
                                 <small class="text-danger">{{ $message }}</small>
@@ -119,6 +118,44 @@
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-group mb-4">
+                                <label for="password" class="form-label fw-semibold">Password Baru (Kosongkan jika tidak ingin mengubah)</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control rounded-start" id="password" name="password">
+                                    <button type="button" class="btn btn-outline-secondary rounded-end" id="togglePassword">
+                                        <i class="bi bi-eye" id="passwordIcon"></i>
+                                    </button>
+                                </div>
+                                @error('password')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-4">
+                                <label for="password_confirmation" class="form-label fw-semibold">Konfirmasi Password Baru</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control rounded-start" id="password_confirmation" name="password_confirmation">
+                                    <button type="button" class="btn btn-outline-secondary rounded-end" id="togglePasswordConfirmation">
+                                        <i class="bi bi-eye" id="passwordConfirmationIcon"></i>
+                                    </button>
+                                </div>
+                                @error('password_confirmation')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning rounded-pill px-4" id="resetPassword">
+                                <i class="bi bi-arrow-repeat me-2"></i> Reset Password ke "unibamadura"
+                            </button>
                         </div>
                     </div>
                     <div class="d-flex gap-2 mt-4">
@@ -161,6 +198,16 @@
             background: linear-gradient(90deg, #0056b3, #007bff);
         }
 
+        .btn-warning {
+            background: linear-gradient(90deg, #ffca2c, #ffab00);
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .btn-warning:hover {
+            background: linear-gradient(90deg, #e0a800, #ffca2c);
+        }
+
         .form-control, .form-select {
             border-radius: 0.5rem;
             border: 1px solid #ced4da;
@@ -186,6 +233,41 @@
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const passwordIcon = document.getElementById('passwordIcon');
+
+            const togglePasswordConfirmation = document.getElementById('togglePasswordConfirmation');
+            const passwordConfirmationInput = document.getElementById('password_confirmation');
+            const passwordConfirmationIcon = document.getElementById('passwordConfirmationIcon');
+
+            const resetPasswordButton = document.getElementById('resetPassword');
+
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.type === 'password' ? 'text' : 'password';
+                passwordInput.type = type;
+                passwordIcon.classList.toggle('bi-eye');
+                passwordIcon.classList.toggle('bi-eye-slash');
+            });
+
+            togglePasswordConfirmation.addEventListener('click', function() {
+                const type = passwordConfirmationInput.type === 'password' ? 'text' : 'password';
+                passwordConfirmationInput.type = type;
+                passwordConfirmationIcon.classList.toggle('bi-eye');
+                passwordConfirmationIcon.classList.toggle('bi-eye-slash');
+            });
+
+            resetPasswordButton.addEventListener('click', function() {
+                passwordInput.value = 'unibamadura';
+                passwordConfirmationInput.value = 'unibamadura';
+                passwordInput.type = 'text';
+                passwordConfirmationInput.type = 'text';
+                passwordIcon.classList.remove('bi-eye');
+                passwordIcon.classList.add('bi-eye-slash');
+                passwordConfirmationIcon.classList.remove('bi-eye');
+                passwordConfirmationIcon.classList.add('bi-eye-slash');
+            });
+
             const facultySelect = document.getElementById('faculty_id');
             const departmentSelect = document.getElementById('department_id');
             const oldDepartmentId = "{{ old('department_id', $user->department_id) }}";
@@ -227,7 +309,6 @@
             facultySelect.addEventListener('change', function() {
                 fetchDepartments(this.value, null);
             });
-
         });
 
         $(document).ready(function() {

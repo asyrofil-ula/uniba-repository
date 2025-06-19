@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -63,7 +64,10 @@ class ProfileController extends Controller
             'faculty_id' => ['required', 'exists:faculties,id'],
             'department_id' => ['required', 'exists:departments,id'],
             'phone' => ['required', 'string', 'max:255'],
-            'student_id' => ['required','unique:users', 'string', 'max:255'],
+            'student_id' => ['nullable', 'string', 'max:255'],
+            'lecturer_id' => ['nullable', 'string', 'max:255'],
+            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
+
         ],[
             'name.required' => 'Nama tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',
@@ -71,9 +75,23 @@ class ProfileController extends Controller
             'department_id.required' => 'Departemen tidak boleh kosong',
             'phone.required' => 'Nomor Telepon tidak boleh kosong',
             'student_id.required' => 'NIM tidak boleh kosong',
-            'student_id.unique' => 'NIM sudah terdaftar',
+//            'student_id.unique' => 'NIM sudah terdaftar',
+//            'lecturer_id.unique' => 'NIP sudah terdaftar',
+            'password.required' => 'Password tidak boleh kosong',
+            'password.min' => 'Password minimal 6 karakter',
+            'password.confirmed' => 'Password tidak cocok',
         ]);
-        $user->update($validated);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+//            'role' => $request->role,
+            'faculty_id' => $request->faculty_id,
+            'department_id' => $request->department_id,
+            'phone' => $request->phone,
+            'student_id' => $request->student_id,
+            'lecturer_id' => $request->lecturer_id,
+            'password' => bcrypt($request->password),
+        ]);
 
         return redirect()->route('profile.show')->with('success', 'Profile updated successfully');
     }
