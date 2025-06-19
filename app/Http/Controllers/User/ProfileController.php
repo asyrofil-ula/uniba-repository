@@ -56,7 +56,26 @@ class ProfileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = Auth::user();
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'faculty_id' => ['required', 'exists:faculties,id'],
+            'department_id' => ['required', 'exists:departments,id'],
+            'phone' => ['required', 'string', 'max:255'],
+            'student_id' => ['required','unique:users', 'string', 'max:255'],
+        ],[
+            'name.required' => 'Nama tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+            'faculty_id.required' => 'Fakultas tidak boleh kosong',
+            'department_id.required' => 'Departemen tidak boleh kosong',
+            'phone.required' => 'Nomor Telepon tidak boleh kosong',
+            'student_id.required' => 'NIM tidak boleh kosong',
+            'student_id.unique' => 'NIM sudah terdaftar',
+        ]);
+        $user->update($validated);
+
+        return redirect()->route('profile.show')->with('success', 'Profile updated successfully');
     }
 
     /**

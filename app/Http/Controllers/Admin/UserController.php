@@ -19,6 +19,7 @@ class UserController extends Controller
         // dd($users);
         $faculties = Faculty::all();
 
+
         return view('admin.users.index', compact('users', 'faculties'));
     }
 
@@ -63,7 +64,35 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            $validated = $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'role' => 'required',
+                'faculty_id' => 'required',
+                'department_id' => 'required',
+                'phone' => 'required',
+                'student_id' => 'nullable|unique:users,student_id,' . $user->id,
+                'lecturer_id' => 'nullable|unique:users,lecturer_id,' . $user->id
+            ],[
+                'name.required' => 'Nama tidak boleh kosong',
+                'email.required' => 'Email tidak boleh kosong',
+                'role.required' => 'Role tidak boleh kosong',
+                'faculty_id.required' => 'Fakultas tidak boleh kosong',
+                'department_id.required' => 'Departemen tidak boleh kosong',
+                'phone.required' => 'Nomor Telepon tidak boleh kosong',
+//                'student_id.required' => 'NIM tidak boleh kosong',
+                'student_id.unique' => 'NIM sudah terdaftar',
+                'lecturer_id.unique' => 'NIM sudah terdaftar'
+            ]);
+            $user->update($validated);
+            return redirect()->route('admin.users')->with('success', 'Update Berhasil');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.users')->withInput()
+                ->with('error', 'Gagal memperbarui data pengguna. ' . $e->getMessage());
+        }
+
     }
 
     /**

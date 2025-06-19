@@ -100,7 +100,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
     Route::get('/admin/users/{id}',[UserController::class, 'show'])->name('admin.users.show');
     Route::get('/admin/users/edit/{id}',[UserController::class, 'edit'])->name('admin.users.edit');
-    Route::post('/admin/users/update/{id}',[UserController::class, 'update'])->name('admin.users.update');
+    Route::put('/admin/users/update/{id}',[UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/admin/users/{id}',[UserController::class, 'destroy'])->name('admin.users.destroy');
 
 });
@@ -113,7 +113,6 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
 
 Route::middleware(['auth', 'role:mahasiswa,dosen'])->group(function () {
     // api
-    Route::get('api/faculties/{id}/departments', [DocumentController::class, 'departments']);
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
     // document
     Route::get('/document', [DocumentController::class, 'index'])->name('user.documents.index');
@@ -130,9 +129,10 @@ Route::middleware(['auth', 'role:mahasiswa,dosen'])->group(function () {
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile/update/{id}',[ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/update/{id}',[ProfileController::class, 'update'])->name('profile.update');
 
 }) ;
+Route::get('api/faculties/{id}/departments', [DocumentController::class, 'departments']);
 
 
 // Route::middleware('auth')->group(function () {

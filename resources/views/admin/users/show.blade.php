@@ -25,7 +25,7 @@
                 </div>
                 <div class="card-body">
                     <div class="text-center mb-4">
-                        <img class="img-profile rounded-circle" src="{{ $user->avatar_url ?? asset('img/undraw_profile.svg') }}" width="120" height="120">
+                        <img class="img-profile rounded-circle" src="{{ asset('admin/assets/static/images/faces/user.png') }}"  width="120" height="120">
                     </div>
 
                     <dl class="row">
