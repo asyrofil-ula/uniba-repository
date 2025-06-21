@@ -18,39 +18,45 @@
             <div class="p-4">
                 <!-- Filter -->
                 <form action="{{ route('user.documents.index') }}" method="GET"
-                      class="grid grid-cols-1  md:grid-cols-3 gap-4 mb-4">
+                      class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+
+                    {{-- Status --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Status</label>
-                        <select name="status"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                        <select name="status" class="mt-1 block w-full border-gray-300 rounded-md">
                             <option value="">Semua Status</option>
-                            <option value="draft" {{ request('status') == 'draft' ? 'selected' : '' }}>Draft</option>
-                            <option value="under_review" {{ request('status') == 'under_review' ? 'selected' : '' }}>
-                                Under Review
-                            </option>
-                            <option value="published" {{ request('status') == 'published' ? 'selected' : '' }}>
-                                Published
-                            </option>
-                            <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected
-                            </option>
+{{--                            <option value="draft" {{ request('status') == 'draft' ? 'selected' : '' }}>Draft</option>--}}
+                            <option value="under_review" {{ request('status') == 'under_review' ? 'selected' : '' }}>Under Review</option>
+                            <option value="published" {{ request('status') == 'published' ? 'selected' : '' }}>Published</option>
+                            <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
                         </select>
                     </div>
+
+                    {{-- Jenis Dokumen --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Jenis Dokumen</label>
-                        <select name="document_type_id"
-                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                        <select name="document_type_id" class="mt-1 block w-full border-gray-300 rounded-md">
                             <option value="">Semua Jenis</option>
                             @foreach($documentTypes as $type)
-                                <option
-                                    value="{{ $type->id }}" {{ request('document_type_id') == $type->id ? 'selected' : '' }}>
+                                <option value="{{ $type->id }}" {{ request('document_type_id') == $type->id ? 'selected' : '' }}>
                                     {{ $type->name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
+
+                    {{-- Pencarian Judul --}}
+                    <div>
+                        <label class="flex text-center items-center text-sm font-medium text-gray-700">Cari Judul</label>
+                        <input type="text" name="q" value="{{ request('q') }}"
+                               class="mt-1 block w-full border-gray-300 rounded-md"
+                               placeholder="Cari judul...">
+                    </div>
+
+                    {{-- Tombol Filter --}}
                     <div class="flex items-end">
                         <button type="submit"
-                                class="inline-flex items-center px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
+                                class="inline-flex items-center px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 w-full">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2"
                                  viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -60,6 +66,7 @@
                         </button>
                     </div>
                 </form>
+
 
                 <!-- Tabel Dokumen -->
                 @if($documents->count() > 0)

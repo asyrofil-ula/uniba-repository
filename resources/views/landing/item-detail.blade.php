@@ -93,29 +93,29 @@
 
                         <!-- Aksi -->
                         <div class="flex flex-wrap gap-4">
-                            <button class="flex items-center text-gray-700 hover:text-blue-700" id="saveButton">
-                                <i class="far fa-bookmark mr-1"></i> Simpan
-                            </button>
+{{--                            <button class="flex items-center text-gray-700 hover:text-blue-700" id="saveButton">--}}
+{{--                                <i class="far fa-bookmark mr-1"></i> Simpan--}}
+{{--                            </button>--}}
                             <button class="flex items-center text-gray-700 hover:text-blue-700" onclick="shareDocument()">
                                 <i class="fas fa-share-alt mr-1"></i> Bagikan
                             </button>
-                            <div class="relative group">
-                                <button class="flex items-center text-gray-700 hover:text-blue-700">
-                                    <i class="fas fa-quote-right mr-1"></i> Kutip
-                                </button>
-                                <div
-                                    class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block border">
-                                    <button onclick="copyCitation('apa')"
-                                        class="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50">Format
-                                        APA</button>
-                                    <button onclick="copyCitation('mla')"
-                                        class="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50">Format
-                                        MLA</button>
-                                    <button onclick="copyCitation('chicago')"
-                                        class="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50">Format
-                                        Chicago</button>
-                                </div>
-                            </div>
+{{--                            <div class="relative group">--}}
+{{--                                <button class="flex items-center text-gray-700 hover:text-blue-700">--}}
+{{--                                    <i class="fas fa-quote-right mr-1"></i> Kutip--}}
+{{--                                </button>--}}
+{{--                                <div--}}
+{{--                                    class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block border">--}}
+{{--                                    <button onclick="copyCitation('apa')"--}}
+{{--                                        class="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50">Format--}}
+{{--                                        APA</button>--}}
+{{--                                    <button onclick="copyCitation('mla')"--}}
+{{--                                        class="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50">Format--}}
+{{--                                        MLA</button>--}}
+{{--                                    <button onclick="copyCitation('chicago')"--}}
+{{--                                        class="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50">Format--}}
+{{--                                        Chicago</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>

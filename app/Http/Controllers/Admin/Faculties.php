@@ -53,7 +53,7 @@ class Faculties extends Controller
         ]);
 
 
-        return redirect()->route('admin.faculties');
+        return redirect()->route('admin.faculties')->with('success', 'Fakultas Berhasil Ditambahkan');
     }
 
     /**
@@ -103,7 +103,7 @@ class Faculties extends Controller
         ]);
 
 
-        return redirect()->route('admin.faculties');
+        return redirect()->route('admin.faculties')->with('success', 'Fakultas Berhasil Diubah');
     }
 
     /**
@@ -112,6 +112,6 @@ class Faculties extends Controller
     public function destroy(string $id)
     {
         ModelsFaculties::where('id', $id)->delete();
-        return redirect()->route('admin.faculties');
+        return redirect()->route('admin.faculties')->with('success', 'Fakultas Berhasil Dihapus');
     }
 }

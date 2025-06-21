@@ -15,13 +15,44 @@ class Documents extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $documents = ModelsDocuments::paginate(5);
+        $query = ModelsDocuments::query()->with(['user', 'faculty']);
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->filled('faculty_id')) {
+            $query->where('faculty_id', $request->faculty_id);
+        }
+
+        if ($request->filled('year')) {
+            $query->where('publication_year', $request->year);
+        }
+
+        if ($request->filled('search')) {
+            $query->where(function($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->search . '%')
+                    ->orWhereHas('user', function ($q2) use ($request) {
+                        $q2->where('name', 'like', '%' . $request->search . '%');
+                    });
+            });
+        }
+
+        $documents = $query->latest()->paginate(5)->withQueryString(); // withQueryString biar filter tetap saat pindah halaman
         $totalDocuments = ModelsDocuments::count();
         $faculties = Faculty::all();
-        return view('admin.documents.documents', compact('documents',  'faculties', 'totalDocuments'));
+
+        // Ambil tahun unik dari dokumen
+        $years = ModelsDocuments::selectRaw('publication_year as year')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year');
+
+        return view('admin.documents.documents', compact('documents', 'faculties', 'totalDocuments', 'years'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -179,7 +210,7 @@ class Documents extends Controller
             ]);
         }
 
-        return redirect()->route('admin.documents')->with('success', 'Document reviewed successfully.');
+        return redirect()->route('admin.documents')->with('success', 'Dokumen berhasil diperiksa.');
     }
 
     public function download(string $id)

@@ -8,7 +8,7 @@
         <div>
             <h1 class="text-2xl font-bold text-gray-800">{{ $document->title }}</h1>
             <div class="flex items-center mt-2">
-                <span class="px-2 py-1 text-xs font-semibold rounded-full 
+                <span class="px-2 py-1 text-xs font-semibold rounded-full
                     {{ $document->status == 'published' ? 'bg-green-100 text-green-800' : '' }}
                     {{ $document->status == 'under_review' ? 'bg-yellow-100 text-yellow-800' : '' }}
                     {{ $document->status == 'rejected' ? 'bg-red-100 text-red-800' : '' }}">
@@ -24,7 +24,7 @@
             <a href="{{ route('user.documents.index') }}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Kembali</a>
         </div>
     </div>
-    
+
     <div class="bg-white rounded-lg shadow overflow-hidden">
         <div class="grid grid-cols-1 md:grid-cols-3">
             <!-- Document Details -->
@@ -63,20 +63,20 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="mb-6">
                     <h2 class="text-lg font-medium text-gray-800 mb-3">Abstrak</h2>
                     <div class="bg-gray-50 p-4 rounded-md">
                         <h3 class="font-medium text-gray-700 mb-2">Bahasa Indonesia</h3>
                         <p class="text-gray-600">{{ $document->abstract_id }}</p>
-                        
+
                         @if($document->abstract_en)
                             <h3 class="font-medium text-gray-700 mt-4 mb-2">English</h3>
                             <p class="text-gray-600">{{ $document->abstract_en }}</p>
                         @endif
                     </div>
                 </div>
-                
+
                 <div>
                     <h2 class="text-lg font-medium text-gray-800 mb-3">Kata Kunci</h2>
                     <div class="flex flex-wrap gap-2">
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- File Preview and Download -->
             <div class="border-t md:border-t-0 md:border-l border-gray-200 p-6 bg-gray-50">
                 <div class="mb-6">
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
                     <h2 class="text-lg font-medium text-gray-800 mb-3">Penulis</h2>
                     <ul class="space-y-2">
@@ -124,9 +124,6 @@
                                     <p class="font-medium">{{ $author->name }}</p>
                                     <p class="text-sm text-gray-500">{{ $author->email }}</p>
                                 </div>
-                                @if($author->pivot->is_corresponding)
-                                    <span class="ml-auto px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Corresponding</span>
-                                @endif
                             </li>
                         @endforeach
                     </ul>

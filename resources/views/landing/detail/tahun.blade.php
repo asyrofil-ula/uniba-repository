@@ -9,7 +9,9 @@
             <p class="text-gray-600">Tidak ditemukan dokumen pada tahun ini.</p>
         @else
             <div class="grid md:grid-cols-2 gap-6">
+                
                 @foreach($documents as $document)
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
                     <div class="border-b pb-6 mb-6">
                         <div class="flex items-start">
                             <div class="mr-4 text-green-600">
@@ -55,6 +57,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
         @endif

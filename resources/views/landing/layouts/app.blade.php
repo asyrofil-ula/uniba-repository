@@ -28,8 +28,8 @@
                             class="text-gray-700 hover:text-emerald-600 font-medium nav-link">Dashboard</a>
                         <a href="{{ route('user.documents.index') }}"
                             class="text-gray-700 hover:text-emerald-600 font-medium nav-link">Dokumen Saya</a>
-                        <a href="{{ route('search') }}"
-                            class="text-gray-700 hover:text-emerald-600 font-medium nav-link">Cari Dokumen</a>
+{{--                        <a href="{{ route('search') }}"--}}
+{{--                            class="text-gray-700 hover:text-emerald-600 font-medium nav-link">Cari Dokumen</a>--}}
                     @else
                         <a href="{{route('landing')}}" class="text-gray-700 hover:text-emerald-600 font-medium nav-link">Beranda</a>
                         <div class="relative group">

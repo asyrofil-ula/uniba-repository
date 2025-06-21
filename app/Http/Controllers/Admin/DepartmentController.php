@@ -34,7 +34,7 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'faculty_id' => ['required'],
@@ -81,13 +81,13 @@ class DepartmentController extends Controller
             'name.required' => 'Nama tidak boleh kosong',
             'faculty_id.required' => 'Fakultas tidak boleh kosong',
         ]);
-        
+
         Department::where('id', $id)->update([
             'name' => $request->name,
             'faculty_id' => $request->faculty_id,
         ]);
 
-        return redirect()->route('admin.departments');
+        return redirect()->route('admin.departments')->with('success', 'Data Berhasil Diubah');
     }
 
     /**

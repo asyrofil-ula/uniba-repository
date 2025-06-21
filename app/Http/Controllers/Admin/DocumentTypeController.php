@@ -22,7 +22,7 @@ class DocumentTypeController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -40,7 +40,7 @@ class DocumentTypeController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('admin.documenttypes')->with('success', 'Document type created successfully.');
+        return redirect()->route('admin.documenttypes')->with('success', 'Jenis dokumen berhasil ditambahkan.');
     }
 
     /**
@@ -75,7 +75,7 @@ class DocumentTypeController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('admin.documenttypes')->with('success', 'Document type updated successfully.');
+        return redirect()->route('admin.documenttypes')->with('success', 'Jenis dokumen berhasil diperbarui.');
     }
 
     /**
@@ -85,6 +85,6 @@ class DocumentTypeController extends Controller
     {
         $documentType = DocumentType::findOrFail($id);
         $documentType->delete();
-        return redirect()->route('admin.documenttypes')->with('success', 'Document type deleted successfully.');
+        return redirect()->route('admin.documenttypes')->with('success', 'Jenis dokumen berhasil dihapus.');
     }
 }

@@ -17,13 +17,23 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with('faculty')->withCount('documents')->paginate(10);
+        $query = User::with('faculty')->withCount('documents');
 
-//         dd($users);
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%$search%")
+                    ->orWhere('email', 'like', "%$search%");
+            });
+        }
+
+        $users = $query->paginate(10)->withQueryString(); // Agar pagination tetap membawa query search
+
         $faculties = Faculty::with('departments')->get();
         $departments = Department::all();
+
         return view('admin.users.index', compact('users', 'faculties', 'departments'));
     }
 
@@ -77,7 +87,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        return redirect()->route('admin.users')->with('success', 'User created successfully');
+        return redirect()->route('admin.users')->with('success', 'User berhasil ditambahkan');
     }
 
     /**
@@ -147,7 +157,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('admin.users')->with('success', 'User deleted successfully');
+        return redirect()->route('admin.users')->with('success', 'User berhasil dihapus');
     }
 
     public function import(Request $request)

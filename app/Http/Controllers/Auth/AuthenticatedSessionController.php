@@ -27,7 +27,7 @@ class AuthenticatedSessionController extends Controller
         if(Auth::attempt($request->only('email', 'password'))){
             $request->session()->regenerate();
 
-            return redirect()->intended($this->redirectPathByRole(Auth::user()->role));
+            return redirect()->intended($this->redirectPathByRole(Auth::user()->role))->with('success', 'Login Berhasil');
         }
 
         return back()->withErrors([
@@ -55,6 +55,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Logout Berhasil');
     }
 }

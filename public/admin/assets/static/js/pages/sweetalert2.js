@@ -3,7 +3,7 @@ const Swal2 = Swal.mixin({
     input: 'form-control'
   }
 })
-
+//
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -163,21 +163,16 @@ document.getElementById("select").addEventListener("click", async (e) => {
 })
 
 // Toasts
-document.getElementById('toast-success').addEventListener('click', () => {
-  Toast.fire({
-    icon: 'success',
-    title: 'Signed in successfully'
-  })
-})
-document.getElementById('toast-warning').addEventListener('click', () => {
-  Toast.fire({
-    icon: 'warning',
-    title: 'Please input your email'
-  })
-})
-document.getElementById('toast-failed').addEventListener('click', () => {
-  Toast.fire({
-    icon: 'error',
-    title: 'Transaction error. Please try again later'
-  })
-})
+
+// document.getElementById('toast-warning').addEventListener('click', () => {
+//   Toast.fire({
+//     icon: 'warning',
+//     title: 'Please input your email'
+//   })
+// })
+// document.getElementById('toast-failed').addEventListener('click', () => {
+//   Toast.fire({
+//     icon: 'error',
+//     title: 'Transaction error. Please try again later'
+//   })
+// })

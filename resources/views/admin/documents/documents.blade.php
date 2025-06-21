@@ -9,11 +9,11 @@
             <div class="card-body">
                 <!-- Filter -->
                 <form action="#" method="GET" class="row g-3 mb-4">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label class="form-label">Status</label>
                         <select name="status" class="form-select">
                             <option value="">Semua Status</option>
-                            <option value="draft" {{ request('status') == 'draft' ? 'selected' : '' }}>Draft</option>
+{{--                            <option value="draft" {{ request('status') == 'draft' ? 'selected' : '' }}>Draft</option>--}}
                             <option value="under_review" {{ request('status') == 'under_review' ? 'selected' : '' }}>Under
                                 Review</option>
                             <option value="published" {{ request('status') == 'published' ? 'selected' : '' }}>Published
@@ -22,7 +22,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label class="form-label">Fakultas</label>
                         <select name="faculty_id" class="form-select">
                             <option value="">Semua Fakultas</option>
@@ -34,22 +34,33 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label class="form-label">Tahun</label>
                         <select name="year" class="form-select">
                             <option value="">Semua Tahun</option>
-                            {{-- @foreach ($years as $year)
+                            @foreach ($years as $year)
                                 <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
                                     {{ $year }}
                                 </option>
-                            @endforeach --}}
+                            @endforeach
                         </select>
                     </div>
-                    <div class="col-md-3 d-flex align-items-end">
+                    <div class="col-md-4">
+                        <label class="form-label">Pencarian</label>
+                        <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari judul atau penulis">
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-end">
                         <button type="submit" class="btn btn-primary w-100">
                             <i class="bi bi-funnel me-1"></i> Filter
                         </button>
                     </div>
+                    <div class="col-md-1 d-flex align-items-end">
+                        <a href="{{ route('admin.documents') }}" class="btn btn-outline-secondary w-100">
+                            <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
+                        </a>
+                    </div>
+
                 </form>
 
                 <!-- Tabel Dokumen -->

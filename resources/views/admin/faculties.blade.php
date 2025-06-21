@@ -44,12 +44,12 @@
 {{--                                        </td>--}}
                                         <td class="align-middle text-end pe-4">
                                             {{-- modal edit button --}}
-                                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
                                                 data-bs-target="#editModal{{ $data->id }}">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>
                                             {{-- modal delete button --}}
-                                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal{{ $data->id }}">
                                                 <i class="bi bi-trash"></i>
                                             </button>

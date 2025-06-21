@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{asset('admin/assets/compiled/css/app.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/compiled/css/app-dark.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/compiled/css/auth.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/assets/extensions/sweetalert2/sweetalert2.min.css')}}">
+
 </head>
 
 <body>
@@ -76,5 +78,5 @@
 
 </div>
 </body>
-
+@include('admin.layouts.partials.scripts')
 </html>

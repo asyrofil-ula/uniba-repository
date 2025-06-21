@@ -4,17 +4,16 @@
 @section('content')
 
 <div class="content-wrapper">
-    <div class="page-header">
+    <div class="page-header d-flex align-items-center mb-4">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-home"></i>
             </span> Manajemen Jenis Dokumen
         </h3>
-        <nav aria-label="breadcrumb">
-            <ul class="breadcrumb">
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addModal"><i class="bi bi-plus me-1"></i></button>
-            </ul>
-        </nav>
+        <div class="ms-auto ">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"><i class="bi bi-plus-circle"></i> Tambah Jenis Dokumen</button>
+
+        </div>
     </div>
     <div class="row">
         <div class="col-12 grid-margin">
@@ -36,8 +35,8 @@
                                     <td> {{ $documentType->name }} </td>
                                     <td> {{ $documentType->description }} </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $documentType->id }}"><i class="bi bi-pencil-square"></i></button>
-                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $documentType->id }}"><i class="bi bi-trash"></i></button>
+                                        <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ $documentType->id }}"><i class="bi bi-pencil-square"></i></button>
+                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $documentType->id }}"><i class="bi bi-trash"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach

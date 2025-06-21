@@ -14,7 +14,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->load(['departments', 'faculty']);
+        $user = Auth::user()->load(['department', 'faculty']);
         $faculties = \App\Models\Faculty::all();
         $departments = \App\Models\Department::all();
         return view('user.profile.index', compact('user', 'faculties', 'departments'));
@@ -93,7 +93,7 @@ class ProfileController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        return redirect()->route('profile.show')->with('success', 'Profile updated successfully');
+        return redirect()->route('profile.show')->with('success', 'Profile berhasil diupdate');
     }
 
     /**

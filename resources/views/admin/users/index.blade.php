@@ -28,11 +28,16 @@
                 <h6 class="m-0 font-weight-bold text-primary">Daftar Pengguna</h6>
                 <div class="d-flex align-items-center gap-2">
                     <div class="input-group input-group-sm" style="max-width: 200px;">
-                        <input type="text" id="searchInput" class="form-control rounded-3"
-                               placeholder="Cari nama atau email..." aria-label="Search">
-                        <span class="input-group-text rounded-end">
-                        <i class="bi bi-search"></i>
-                    </span>
+                        <form method="GET" action="{{ route('admin.users') }}" class="d-flex align-items-center gap-2">
+                            <div class="input-group input-group-sm" style="max-width: 200px;">
+                                <input type="text" name="search" value="{{ request('search') }}"
+                                       class="form-control rounded-3" placeholder="Cari nama atau email...">
+                                <button type="submit" class="input-group-text rounded-end bg-light border">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                        </span>
                     </div>
                     <a href="{{ route('admin.users.export') }}"
                        class="btn btn-outline-success btn-sm rounded-pill px-3">

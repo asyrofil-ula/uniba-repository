@@ -15,10 +15,30 @@ class DocumentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = \App\Models\Document::query()
+            ->where('user_id', Auth::id())
+            ->with(['documentType', 'faculty']);
+
+        // Filter status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Filter jenis dokumen
+        if ($request->filled('document_type_id')) {
+            $query->where('document_type_id', $request->document_type_id);
+        }
+
+        // Search judul
+        if ($request->filled('q')) {
+            $query->where('title', 'like', '%' . $request->q . '%');
+        }
+
+        $documents = $query->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
         $documentTypes = \App\Models\DocumentType::all();
-        $documents = \App\Models\Document::where('user_id', Auth::user()->id)->paginate(5);
+
         return view('user.documents.index', compact('documentTypes', 'documents'));
     }
 
@@ -88,7 +108,7 @@ class DocumentController extends Controller
             'is_corresponding' => true
         ]);
 
-        return redirect()->route('user.documents.index')->with('success', 'Document created successfully.');
+        return redirect()->route('user.documents.index')->with('success', 'Dokumen berhasil ditambahkan.');
     }
 
     /**
@@ -98,7 +118,7 @@ class DocumentController extends Controller
     {
         $document = Document::findOrFail($id);
         $document->load(['documentType', 'faculty', 'department', 'keywords', 'authors']);
-        
+
         return view('user.documents.show', compact('document'));
     }
 
@@ -125,7 +145,7 @@ class DocumentController extends Controller
         $document = Document::findOrFail($id);
         if($document->status === 'published'){
             return redirect()->route('user.documents.index')->with('error', 'Document already published.');
-            
+
         }
         $request->validate([
            'title' => 'required|string|max:255',
@@ -137,7 +157,7 @@ class DocumentController extends Controller
             // 'language' => 'required|in:id,en,both',
             'file' => 'nullable|file|mimes:pdf|max:10240', // Max 10MB
             'keywords' => 'required|array|min:3',
-            'keywords.*' => 'string|max:50', 
+            'keywords.*' => 'string|max:50',
         ]);
          $data = [
             'title' => $request->title,
@@ -169,7 +189,7 @@ class DocumentController extends Controller
         foreach ($request->keywords as $keyword) {
             $document->keywords()->create(['keyword' => $keyword]);
         }
-        return redirect()->route('user.documents.index')->with('success', 'Document updated successfully.');
+        return redirect()->route('user.documents.index')->with('success', 'Dokumen berhasil diperbarui.');
     }
 
     /**

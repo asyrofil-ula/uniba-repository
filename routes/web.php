@@ -57,6 +57,9 @@ Route::get('/tentang', fn() => view('landing.tentang'))->name('about');
     // admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/home', [Dashboard::class, 'index'])->name('admin.home');
+    Route::get('/api/chart-data', [Dashboard::class, 'getChartData']);
+
+
     // kategori
     Route::get('/admin/categories', [Categories::class, 'index'])->name('admin.categories');
     Route::post('/admin/categories/store', [Categories::class, 'store'])->name('admin.categories.store');
@@ -109,11 +112,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 });
 
-    //dosen
-Route::middleware(['auth', 'role:dosen'])->group(function () {
-
-});
-//mahasiswa + dosen
 
 Route::middleware(['auth', 'role:mahasiswa,dosen'])->group(function () {
     // api

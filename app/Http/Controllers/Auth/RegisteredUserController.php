@@ -47,20 +47,15 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect($this->redirectPathByRole($user->role));
+        return redirect($this->redirectPathByRole($user->role))->with('success', 'Registrasi Berhasil');
     }
 
     private function redirectPathByRole(string $role): string
     {
-        switch ($role) {
-            case 'admin':
-                return route('admin.home');
-            case 'dosen':
-                return route('dosen.home');
-            case 'mhs':
-                return route('mahasiswa.home');
-            default:
-                return route('login');
+        if($role == 'admin'){
+            return route('admin.home');
+        }else {
+            return route('user.dashboard');
         }
     }
 }

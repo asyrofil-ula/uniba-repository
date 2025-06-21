@@ -7,5 +7,6 @@
   <link rel="stylesheet" href="{{asset('admin/assets/compiled/css/app.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/compiled/css/app-dark.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/compiled/css/iconly.css')}}">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@stack('styles')
+  <link rel="stylesheet" href="{{asset('admin/assets/extensions/sweetalert2/sweetalert2.min.css')}}">
+
+  @stack('styles')
